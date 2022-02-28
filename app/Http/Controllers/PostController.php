@@ -11,8 +11,7 @@ class PostController extends Controller
     {
         return view('blog',[
             "title" => "All Post",
-            // "posts" => Post::all()
-            "posts" => Post::latest()->get(),
+            "posts" => Post::latest()->filter(request(['search', 'category', 'author']))->paginate(7)->withQueryString(),
             "active" => "blog"
         ]);
     }

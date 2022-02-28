@@ -1,9 +1,10 @@
 <?php
 
-use App\Http\Controllers\PostController;
-use Illuminate\Support\Facades\Route;
 use App\Models\Category;
-use App\Models\User;
+use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\PostController;
+use App\Http\Controllers\LoginController;
+use App\Http\Controllers\RegisterController;
 
 /*
 |--------------------------------------------------------------------------
@@ -34,14 +35,6 @@ Route::get('/about', function () {
 Route::get('/blog', [PostController::class, 'index']);
 Route::get('/post/{post:slug}', [PostController::class, 'show']);
 
-Route::get('/category/{category:slug}', function(Category $category){
-    return view('blog', [
-        'title' => "Post By Category : $category->name",
-        'posts' => $category->posts->load(['category', 'author']),
-        "active" => "categories"
-    ]);
-});
-
 Route::get('/categories', function(){
     return view('categories', [
         'title' => 'Post Categories',
@@ -50,9 +43,5 @@ Route::get('/categories', function(){
     ]);
 });
 
-Route::get('/author/{author:username}', function(User $author){
-    return view('blog', [
-        'title' => "Post By Author : $author->name",
-        'posts' => $author->posts->load(['author', 'category']),
-    ]);
-});
+Route::get('/login', [LoginController::class, 'index']);
+Route::get('/register', [RegisterController::class, 'index']);
