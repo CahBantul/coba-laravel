@@ -65,3 +65,4 @@
     @endif
 {{ $posts->links() }}
 @endsection
+
