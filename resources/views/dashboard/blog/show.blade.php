@@ -14,7 +14,6 @@
 
         <article class="my-5 fs-5">
         {!! $post->body !!}
-        <a href="/blog" class="d-block mt-4">kembali ke blog</a>
       </article>
     </div>
   </div>
